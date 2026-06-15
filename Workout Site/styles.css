@@ -228,7 +228,7 @@ h3 {
   width: 160px;
   height: 290px;
   transform: translateX(-50%);
-  animation: pull 2.4s ease-in-out infinite;
+  animation: pull-body 2.4s ease-in-out infinite;
 }
 
 .athlete span {
@@ -243,6 +243,8 @@ h3 {
   width: 46px;
   height: 46px;
   border-radius: 50%;
+  background: #ff6b4a;
+  box-shadow: 0 4px 12px rgba(225, 90, 68, 0.4);
 }
 
 .torso {
@@ -251,6 +253,8 @@ h3 {
   width: 24px;
   height: 104px;
   border-radius: 999px;
+  background: var(--coral);
+  box-shadow: 0 4px 12px rgba(225, 90, 68, 0.3);
 }
 
 .arm,
@@ -263,42 +267,92 @@ h3 {
 .arm {
   top: 0;
   height: 112px;
-  background: var(--forest-deep) !important;
+  background: #ff8c42 !important;
+  box-shadow: 0 4px 10px rgba(255, 140, 66, 0.4);
 }
 
 .arm-left {
   left: 44px;
-  transform: rotate(20deg);
+  transform: rotate(25deg);
+  animation: arm-left-pull 2.4s ease-in-out infinite;
 }
 
 .arm-right {
   right: 44px;
-  transform: rotate(-20deg);
+  transform: rotate(-25deg);
+  animation: arm-right-pull 2.4s ease-in-out infinite;
 }
 
 .leg {
   top: 178px;
   height: 112px;
+  background: var(--coral);
 }
 
 .leg-left {
   left: 62px;
-  transform: rotate(9deg);
+  transform: rotate(12deg);
+  animation: leg-left-swing 2.4s ease-in-out infinite;
 }
 
 .leg-right {
   right: 62px;
-  transform: rotate(-9deg);
+  transform: rotate(-12deg);
+  animation: leg-right-swing 2.4s ease-in-out infinite;
 }
 
-@keyframes pull {
+@keyframes pull-body {
   0%,
   100% {
-    transform: translate(-50%, 32px);
+    transform: translate(-50%, 52px);
   }
-  48%,
-  58% {
-    transform: translate(-50%, -18px);
+  45%,
+  55% {
+    transform: translate(-50%, -12px);
+  }
+}
+
+@keyframes arm-left-pull {
+  0%,
+  100% {
+    transform: rotate(25deg);
+  }
+  45%,
+  55% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes arm-right-pull {
+  0%,
+  100% {
+    transform: rotate(-25deg);
+  }
+  45%,
+  55% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes leg-left-swing {
+  0%,
+  100% {
+    transform: rotate(15deg);
+  }
+  45%,
+  55% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes leg-right-swing {
+  0%,
+  100% {
+    transform: rotate(-15deg);
+  }
+  45%,
+  55% {
+    transform: rotate(-3deg);
   }
 }
 
