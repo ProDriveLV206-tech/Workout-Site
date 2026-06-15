@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Workout Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#planner" aria-label="Workout planner home">
+        <span class="brand-mark" aria-hidden="true">WP</span>
+        <span>Workout Workshop</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#sections">Sections</a>
+        <a href="#planner">Plan</a>
+        <a href="#exercises">Exercises</a>
+        <a href="#progress">Progress</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Bodyweight and body-part training made personal</p>
+          <h1 id="hero-title">Build a workout plan around your body, level, and focus.</h1>
+          <p>
+            Enter your age, weight, height, current ability, and training focus to get a weekly
+            plan for calisthenics, chest, back, shoulders, arms, legs, core, or full-body days.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#planner">Make my plan</a>
+            <a class="button secondary" href="#sections">See sections</a>
+          </div>
+        </div>
+        <div class="motion-stage" aria-label="Animated calisthenics demo">
+          <div class="floor"></div>
+          <div class="bar"></div>
+          <div class="athlete athlete-pull">
+            <span class="head"></span>
+            <span class="torso"></span>
+            <span class="arm arm-left"></span>
+            <span class="arm arm-right"></span>
+            <span class="leg leg-left"></span>
+            <span class="leg leg-right"></span>
+          </div>
+          <div class="rep-counter">
+            <strong>Pull-up</strong>
+            <span>Control up, slow down</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sections-section" id="sections" aria-labelledby="sections-title">
+        <div class="section-heading">
+          <p class="eyebrow">Workout sections</p>
+          <h2 id="sections-title">Pick a split or body part</h2>
+        </div>
+        <div class="sections-grid" id="sections-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="planner-section" id="planner" aria-labelledby="planner-title">
+        <div class="section-heading">
+          <p class="eyebrow">Personal planner</p>
+          <h2 id="planner-title">Generate your workout week or split</h2>
+        </div>
+
+        <div class="planner-grid">
+          <form class="planner-form" id="workout-form">
+            <label>
+              Age
+              <input id="age" name="age" type="number" min="8" max="90" value="16" required />
+            </label>
+            <label>
+              Weight
+              <div class="split-input">
+                <input id="weight" name="weight" type="number" min="40" max="500" value="150" required />
+                <select id="weight-unit" name="weightUnit" aria-label="Weight unit">
+                  <option value="lb">lb</option>
+                  <option value="kg">kg</option>
+                </select>
+              </div>
+            </label>
+            <label>
+              Height
+              <div class="split-input">
+                <input id="height" name="height" type="number" min="36" max="90" value="68" required />
+                <select id="height-unit" name="heightUnit" aria-label="Height unit">
+                  <option value="in">in</option>
+                  <option value="cm">cm</option>
+                </select>
+              </div>
+            </label>
+            <label>
+              Skill level
+              <select id="level" name="level">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate" selected>Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </label>
+            <label>
+              Training focus
+              <select id="focus" name="focus">
+                <option value="calisthenics">Calisthenics</option>
+                <option value="chest">Chest</option>
+                <option value="back">Back</option>
+                <option value="shoulders">Shoulders</option>
+                <option value="arms">Arms</option>
+                <option value="legs">Legs</option>
+                <option value="core">Core</option>
+                <option value="full-body" selected>Full body</option>
+              </select>
+            </label>
+            <label>
+              Main goal
+              <select id="goal" name="goal">
+                <option value="strength">Strength</option>
+                <option value="muscle">Muscle</option>
+                <option value="fat-loss">Fat loss</option>
+                <option value="skills">Skills</option>
+              </select>
+            </label>
+            <label>
+              Days per week
+              <input id="days" name="days" type="range" min="2" max="6" value="4" />
+              <span class="range-value"><output id="days-output">4</output> days</span>
+            </label>
+            <fieldset>
+              <legend>Equipment</legend>
+              <label class="check-row"><input type="checkbox" name="equipment" value="pull-up bar" checked /> Pull-up bar</label>
+              <label class="check-row"><input type="checkbox" name="equipment" value="dip bars" /> Dip bars</label>
+              <label class="check-row"><input type="checkbox" name="equipment" value="rings" /> Rings</label>
+            </fieldset>
+            <button class="button primary full" type="submit">Create plan</button>
+          </form>
+
+          <aside class="plan-output" aria-live="polite">
+            <div class="plan-card">
+              <p class="eyebrow">Your plan</p>
+              <h3 id="plan-name">Balanced 4-Day Full Body Week</h3>
+              <p id="plan-summary">
+                Fill in the form and generate a plan. The first plan is already tuned for a
+                steady intermediate bodyweight routine.
+              </p>
+              <div class="stats" id="stats"></div>
+              <div class="plan-actions">
+                <button class="button secondary" id="download-workout" type="button">Download workout</button>
+                <span id="download-status" class="download-status" aria-live="polite">Ready to export</span>
+              </div>
+            </div>
+            <div class="week-list" id="week-list"></div>
+            <p class="note">
+              This is general fitness guidance. Stop if pain feels sharp or unusual, and ask a
+              qualified adult, coach, or clinician if you have health concerns.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="exercise-section" id="exercises" aria-labelledby="exercise-title">
+        <div class="section-heading">
+          <p class="eyebrow">How to do workouts</p>
+          <h2 id="exercise-title">Exercise demos and form cues</h2>
+        </div>
+        <div class="exercise-toolbar" role="tablist" aria-label="Exercise filter">
+          <button class="filter active" type="button" data-filter="all">All</button>
+          <button class="filter" type="button" data-filter="push">Push</button>
+          <button class="filter" type="button" data-filter="pull">Pull</button>
+          <button class="filter" type="button" data-filter="legs">Legs</button>
+          <button class="filter" type="button" data-filter="core">Core</button>
+        </div>
+        <div class="exercise-grid" id="exercise-grid"></div>
+      </section>
+
+      <section class="progress-section" id="progress" aria-labelledby="progress-title">
+        <div>
+          <p class="eyebrow">Progression</p>
+          <h2 id="progress-title">Know when to level up</h2>
+          <p>
+            When you can finish every set with clean form and two reps still left in the tank,
+            move to the next progression or add one set.
+          </p>
+        </div>
+        <div class="progress-lanes">
+          <div>
+            <span>Push-up</span>
+            <strong>Incline -> Standard -> Diamond -> Archer</strong>
+          </div>
+          <div>
+            <span>Pull-up</span>
+            <strong>Rows -> Negatives -> Pull-ups -> Chest-to-bar</strong>
+          </div>
+          <div>
+            <span>Legs</span>
+            <strong>Squat -> Split squat -> Bulgarian -> Pistol prep</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
